@@ -1,0 +1,76 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.0"
+    defaultConfig {
+        applicationId "com.vsahin.moneycim"
+        minSdkVersion 19
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
+        vectorDrawables.useSupportLibrary = true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    configurations.all {
+        resolutionStrategy.force 'com.google.code.findbugs:jsr305:1.3.9'
+    }
+}
+
+project.ext {
+    daggerVersion = "2.11"
+    butterKnifeVersion = "8.8.1"
+    roomVersion = "1.0.0-alpha9"
+    androidDbDebugVersion = "1.0.1"
+    googleVisionApiVersion = "11.0.4"
+    androidSupportLibrary = "26.0.1"
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    testCompile 'junit:junit:4.12'
+
+    //design support library
+    compile "com.android.support:appcompat-v7:$androidSupportLibrary"
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile "com.android.support:design:$androidSupportLibrary"
+    compile "com.android.support:cardview-v7:$androidSupportLibrary"
+
+    // Dagger
+    annotationProcessor "com.google.dagger:dagger-compiler:$project.daggerVersion"
+    compile "com.google.dagger:dagger:$project.daggerVersion"
+
+    // ButterKnife
+    compile "com.jakewharton:butterknife:$project.butterKnifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$project.butterKnifeVersion"
+
+    //android livedata, lifecycle etc
+    compile "android.arch.lifecycle:runtime:$roomVersion"
+    compile "android.arch.lifecycle:extensions:$roomVersion"
+    annotationProcessor "android.arch.lifecycle:compiler:$roomVersion"
+
+    //room
+    compile "android.arch.persistence.room:runtime:$roomVersion"
+    annotationProcessor "android.arch.persistence.room:compiler:$roomVersion"
+    compile "android.arch.persistence.room:rxjava2:$roomVersion"
+
+    //Database and Shared Preferences Debug
+    debugCompile "com.amitshekhar.android:debug-db:$androidDbDebugVersion"
+
+    //Google Vision API
+    compile "com.google.android.gms:play-services-vision:$googleVisionApiVersion"
+}

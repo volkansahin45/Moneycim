@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/container"
+    android:clickable="true"
+    android:focusableInTouchMode="true"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_a_spending"
+            android:textSize="25sp"
+            android:id="@+id/title_textView"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="25dp"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginEnd="16dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            android:clickable="true"
+            android:focusableInTouchMode="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Spinner
+                    android:id="@+id/group_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_margin="16dp"/>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/group_spinner"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="16dp"
+                    android:id="@+id/textInputLayout">
+
+                    <EditText
+                        android:id="@+id/quantity_edittext"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="numberDecimal"
+                        android:hint="@string/quantity"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textInputLayout"
+                    android:layout_alignParentStart="true"
+                    android:layout_margin="16dp"
+                    android:id="@+id/textInputLayout2">
+
+                    <EditText
+                        android:id="@+id/description_edittext"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/description"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+                <ImageButton
+                    android:id="@+id/camera_button"
+                    android:layout_width="70dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="end"
+                    app:srcCompat="@drawable/icon_camera"
+                    android:background="@drawable/button_bordered_save"
+                    android:textColor="@color/colorAccent"
+                    android:layout_below="@+id/textInputLayout2"
+                    android:layout_alignStart="@+id/textInputLayout2"
+                    android:contentDescription="@string/save"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"/>
+
+                <ImageButton
+                    android:id="@+id/delete_button"
+                    android:layout_width="70dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="end"
+                    app:srcCompat="@drawable/icon_delete"
+                    android:background="@drawable/button_bordered_save"
+                    android:textColor="@color/colorAccent"
+                    android:contentDescription="@string/delete"
+                    android:layout_below="@+id/textInputLayout2"
+                    android:layout_centerHorizontal="true"
+                    android:visibility="invisible"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"/>
+
+                <ImageButton
+                    android:id="@+id/save_button"
+                    android:layout_width="70dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="end"
+                    app:srcCompat="@drawable/icon_save"
+                    android:background="@drawable/button_bordered_save"
+                    android:textColor="@color/colorAccent"
+                    android:layout_below="@+id/textInputLayout2"
+                    android:layout_alignEnd="@+id/textInputLayout2"
+                    android:contentDescription="@string/scan_receipt"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"/>
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

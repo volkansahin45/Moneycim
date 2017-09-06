@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Moneycim</string>
+    <string name="permission_camera_rationale">Please give camera permission</string>
+    <string name="ok">OK</string>
+    <string name="low_storage_error">Low Storage!</string>
+    <string name="no_camera_permission">There is no camera permission</string>
+    <string name="tap_on_quantity">Tap on the quantity to capture.</string>
+    <string name="scan_receipt">Scan Receipt</string>
+    <string name="save">Save</string>
+    <string name="add_a_spending">Add a Spending</string>
+    <string name="quantity">Quantity</string>
+    <string name="description">Description</string>
+    <string name="delete">delete</string>
+    <string name="edit_a_spending">Edit a Spending</string>
+    <string name="turkish_lira_symbol">₺</string>
+
+</resources>
