@@ -139,8 +139,7 @@ public class AddAndEditSpendingFragment extends LifecycleFragment implements Vie
         String quantityString = quantityEditText.getText().toString();
         String description = descriptionEditText.getText().toString();
         Date date;
-        if(spending.getDate() == null)
-        {
+        if(spending.getDate() == null) {
             date = new Date(System.currentTimeMillis());
         } else {
             date = spending.getDate();
