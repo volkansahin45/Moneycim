@@ -13,5 +13,13 @@
     <string name="delete">delete</string>
     <string name="edit_a_spending">Edit a Spending</string>
     <string name="turkish_lira_symbol">₺</string>
+    <string name="navigation_drawer_open">Open Drawer</string>
+    <string name="navigation_drawer_close">Close Drawer</string>
+    <string name="app_description">Smart Spending Tracker</string>
+    <string name="app_link">https://www.github.com/volkansahin45/moneycim</string>
+    <string name="nav_about">About</string>
+    <string name="nav_share">Share</string>
+    <string name="app_play_store_id">VTT</string>
+    <string name="nav_analyze">Spending Analyze</string>
 
 </resources>

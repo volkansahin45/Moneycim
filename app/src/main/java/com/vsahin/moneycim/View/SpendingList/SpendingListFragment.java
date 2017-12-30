@@ -1,5 +1,6 @@
 package com.vsahin.moneycim.View.SpendingList;
 
+import android.app.AlertDialog;
 import android.arch.lifecycle.LifecycleFragment;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;

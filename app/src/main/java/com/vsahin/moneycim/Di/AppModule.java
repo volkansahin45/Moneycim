@@ -40,7 +40,6 @@ public class AppModule {
                     @Override
                     public void onCreate(@NonNull SupportSQLiteDatabase db) {
                         super.onCreate(db);
-                        Log.d("AppModule", "onCreate: ");
                         String query = "INSERT INTO SPENDING_GROUP VALUES ('1', 'Gas'), ('2', 'Food'), ('3', 'Clothes')";
                         db.execSQL(query);
                     }
@@ -48,7 +47,6 @@ public class AppModule {
                     @Override
                     public void onOpen(@NonNull SupportSQLiteDatabase db) {
                         super.onOpen(db);
-                        Log.d("AppModule", "onOpen: ");
                     }
                 })
                 .build();

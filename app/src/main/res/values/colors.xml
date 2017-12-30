@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#00bcd4</color>
-    <color name="colorPrimaryDark">#04adbf</color>
+    <color name="colorPrimary">#00D8F5</color>
+    <color name="colorPrimaryDark">#00C6E0</color>
     <color name="colorAccent">#ffd74b</color>
-    <color name="colorPrimaryLight">#b5f6f3</color>
+    <color name="colorPrimaryLight">#88EEFB</color>
+    <color name="drawerHeaderBackground">#B3C100</color>
 </resources>
