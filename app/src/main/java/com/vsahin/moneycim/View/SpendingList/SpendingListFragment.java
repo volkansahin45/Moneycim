@@ -1,6 +1,5 @@
 package com.vsahin.moneycim.View.SpendingList;
 
-import android.app.AlertDialog;
 import android.arch.lifecycle.LifecycleFragment;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -28,7 +27,7 @@ import butterknife.ButterKnife;
  * Created by Volkan Şahin on 17.08.2017.
  */
 
-public class SpendingListFragment extends LifecycleFragment implements RecyclerVewItemClickListener {
+public class SpendingListFragment extends LifecycleFragment implements RecyclerViewItemClickListener {
     ArrayList<Spending> spendingList = new ArrayList<>();
     SpendingListViewModel viewModel;
     SpendingRecyclerViewAdapter adapter;

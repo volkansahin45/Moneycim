@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.animation.TranslateAnimation;
 import android.widget.TextView;
 
 import com.vsahin.moneycim.Model.Pojo.Spending;
@@ -34,15 +33,15 @@ public class SpendingRecyclerViewAdapter extends RecyclerView.Adapter<SpendingRe
     private List<Spending> spendings;
     SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm"); //you can add dd/MM/yyyy for date
     private  LayoutInflater layoutInflater;
-    RecyclerVewItemClickListener recyclerVewItemClickListener;
+    RecyclerViewItemClickListener recyclerViewItemClickListener;
     private int lastPosition = -1;
     Context context;
 
-    public SpendingRecyclerViewAdapter(Context context, ArrayList<Spending> spendings, RecyclerVewItemClickListener listener) {
+    public SpendingRecyclerViewAdapter(Context context, ArrayList<Spending> spendings, RecyclerViewItemClickListener listener) {
         this.context = context;
         this.layoutInflater = LayoutInflater.from(context);
         this.spendings = spendings;
-        this.recyclerVewItemClickListener = listener;
+        this.recyclerViewItemClickListener = listener;
     }
 
     @Override
@@ -135,7 +134,7 @@ public class SpendingRecyclerViewAdapter extends RecyclerView.Adapter<SpendingRe
         public boolean onLongClick(View view) {
             int position = getAdapterPosition();
             if(position != -1){
-                recyclerVewItemClickListener.onItemLongClick(spendings.get(position).getRawSpending().getId());
+                recyclerViewItemClickListener.onItemLongClick(spendings.get(position).getRawSpending().getId());
             }
             return false;
         }
@@ -144,7 +143,7 @@ public class SpendingRecyclerViewAdapter extends RecyclerView.Adapter<SpendingRe
         public void onClick(View view) {
             int position = getAdapterPosition();
             if(position != -1){
-                recyclerVewItemClickListener.onItemClick(spendings.get(position).getRawSpending());
+                recyclerViewItemClickListener.onItemClick(spendings.get(position).getRawSpending());
             }
         }
     }
