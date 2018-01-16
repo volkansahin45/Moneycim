@@ -3,7 +3,6 @@ package com.vsahin.moneycim.View.SpendingList;
 import android.content.Context;
 import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,8 +20,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static android.content.ContentValues.TAG;
 
 /**
  * Created by Volkan Şahin on 22.08.2017.
@@ -47,7 +44,6 @@ public class SpendingRecyclerViewAdapter extends RecyclerView.Adapter<SpendingRe
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View v = layoutInflater.inflate(R.layout.item_spending_list_row, viewGroup, false);
-        Log.d(TAG, "*** onCreateViewHolder: created");
         MyViewHolder viewHolder = new MyViewHolder(v);
         return viewHolder;
     }
@@ -67,8 +63,6 @@ public class SpendingRecyclerViewAdapter extends RecyclerView.Adapter<SpendingRe
         viewHolder.getTxtSpendingGroup().setText(group);
 
         setAnimation(viewHolder.itemView, position);
-
-        Log.d(TAG, "*** onBindViewHolder: binded");
     }
 
     @Override
