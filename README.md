@@ -7,4 +7,4 @@ Moneycim is a Spending Tracker Application that made with MVVM Design Pattern, n
 <img src="/art/1.png" width="250"> <img src="/art/2.png" width="250">
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
