@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion 27
     defaultConfig {
         applicationId "com.vsahin.moneycim"
         minSdkVersion 19
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -31,9 +31,10 @@ project.ext {
     daggerVersion = "2.11"
     butterKnifeVersion = "8.8.1"
     roomVersion = "1.0.0"
+    architectureComponents = "1.1.1"
     androidDbDebugVersion = "1.0.1"
-    googleVisionApiVersion = "11.0.4"
-    androidSupportLibrary = "26.1.0"
+    googleVisionApiVersion = "12.0.0"
+    androidSupportLibrary = "27.1.0"
 }
 
 dependencies {
@@ -58,14 +59,14 @@ dependencies {
     annotationProcessor "com.jakewharton:butterknife-compiler:$project.butterKnifeVersion"
 
     //android livedata, lifecycle etc
-    implementation "android.arch.lifecycle:runtime:$roomVersion"
-    implementation "android.arch.lifecycle:extensions:$roomVersion"
-    annotationProcessor "android.arch.lifecycle:compiler:$roomVersion"
+    implementation "android.arch.lifecycle:runtime:$architectureComponents"
+    implementation "android.arch.lifecycle:extensions:$architectureComponents"
+    annotationProcessor "android.arch.lifecycle:compiler:$architectureComponents"
 
     //room
     implementation "android.arch.persistence.room:runtime:$roomVersion"
     annotationProcessor "android.arch.persistence.room:compiler:$roomVersion"
-    implementation "android.arch.persistence.room:rxjava2:$roomVersion"
+
 
     //Database and Shared Preferences Debug
     debugCompile "com.amitshekhar.android:debug-db:$androidDbDebugVersion"
