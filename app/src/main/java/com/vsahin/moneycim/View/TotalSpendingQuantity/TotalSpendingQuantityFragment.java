@@ -1,17 +1,18 @@
 package com.vsahin.moneycim.View.TotalSpendingQuantity;
 
-import android.arch.lifecycle.LifecycleFragment;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.vsahin.moneycim.R;
+import com.vsahin.moneycim.View.Base.BaseFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,9 +21,9 @@ import butterknife.ButterKnife;
  * Created by Volkan Şahin on 21.08.2017.
  */
 
-public class TotalSpendingQuantityFragment extends LifecycleFragment {
+public class TotalSpendingQuantityFragment extends BaseFragment {
 
-    TotalSpendingQuantityViewModel viewModel;
+    private TotalSpendingQuantityViewModel viewModel;
 
     @BindView(R.id.quantity)
     TextView txtQuantity;

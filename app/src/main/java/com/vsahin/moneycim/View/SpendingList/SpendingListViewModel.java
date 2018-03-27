@@ -20,7 +20,8 @@ import javax.inject.Inject;
 
 public class SpendingListViewModel extends AndroidViewModel {
 
-    @Inject public SpendingRepository spendingRepository;
+    @Inject
+    SpendingRepository spendingRepository;
     final public LiveData<List<Spending>> spendings;
 
     public SpendingListViewModel(Application application) {
@@ -30,7 +31,7 @@ public class SpendingListViewModel extends AndroidViewModel {
         spendings = getSpendings();
     }
 
-    public LiveData<List<Spending>> getSpendings(){
+    private LiveData<List<Spending>> getSpendings(){
         return spendingRepository.getSpendings();
     }
 

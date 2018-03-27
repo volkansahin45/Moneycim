@@ -75,7 +75,7 @@ public class CameraSource {
     @SuppressLint("InlinedApi")
     public static final int CAMERA_FACING_BACK = CameraInfo.CAMERA_FACING_BACK;
     @SuppressLint("InlinedApi")
-    public static final int CAMERA_FACING_FRONT = CameraInfo.CAMERA_FACING_FRONT;
+    private static final int CAMERA_FACING_FRONT = CameraInfo.CAMERA_FACING_FRONT;
 
     private static final String TAG = "OpenCameraSource";
 
@@ -157,7 +157,7 @@ public class CameraSource {
      * buffer.  We use byte buffers internally because this is a more efficient way to call into
      * native code later (avoids a potential copy).
      */
-    private Map<byte[], ByteBuffer> mBytesToByteBuffer = new HashMap<>();
+    private final Map<byte[], ByteBuffer> mBytesToByteBuffer = new HashMap<>();
 
     //==============================================================================================
     // Builder
@@ -168,7 +168,7 @@ public class CameraSource {
      */
     public static class Builder {
         private final Detector<?> mDetector;
-        private CameraSource mCameraSource = new CameraSource();
+        private final CameraSource mCameraSource = new CameraSource();
 
         /**
          * Creates a camera source builder with the supplied context and detector.  Camera preview
@@ -255,7 +255,7 @@ public class CameraSource {
     /**
      * Callback interface used to signal the moment of actual image capture.
      */
-    public interface ShutterCallback {
+    interface ShutterCallback {
         /**
          * Called as near as possible to the moment when a photo is captured from the sensor. This
          * is a good opportunity to play a shutter sound or give other feedback of camera operation.
@@ -268,7 +268,7 @@ public class CameraSource {
     /**
      * Callback interface used to supply image data from a photo capture.
      */
-    public interface PictureCallback {
+    interface PictureCallback {
         /**
          * Called when image data is available after a picture is taken.  The format of the data
          * is a jpeg binary.
@@ -279,7 +279,7 @@ public class CameraSource {
     /**
      * Callback interface used to notify on completion of camera auto focus.
      */
-    public interface AutoFocusCallback {
+    interface AutoFocusCallback {
         /**
          * Called when the camera auto focus completes.  If the camera
          * does not support auto-focus and autoFocus is called,
@@ -302,7 +302,7 @@ public class CameraSource {
      * Camera.Parameters#FOCUS_MODE_CONTINUOUS_PICTURE}. Applications can show
      * autofocus animation based on this.</p>
      */
-    public interface AutoFocusMoveCallback {
+    interface AutoFocusMoveCallback {
         /**
          * Called when the camera auto focus starts or stops.
          *
@@ -830,18 +830,18 @@ public class CameraSource {
      * size is null, then there is no picture size with the same aspect ratio as the preview size.
      */
     private static class SizePair {
-        private Size mPreview;
+        private final Size mPreview;
         private Size mPicture;
 
-        public SizePair(android.hardware.Camera.Size previewSize,
-                        android.hardware.Camera.Size pictureSize) {
+        SizePair(android.hardware.Camera.Size previewSize,
+                 android.hardware.Camera.Size pictureSize) {
             mPreview = new Size(previewSize.width, previewSize.height);
             if (pictureSize != null) {
                 mPicture = new Size(pictureSize.width, pictureSize.height);
             }
         }
 
-        public Size previewSize() {
+        Size previewSize() {
             return mPreview;
         }
 
@@ -1033,7 +1033,7 @@ public class CameraSource {
      */
     private class FrameProcessingRunnable implements Runnable {
         private Detector<?> mDetector;
-        private long mStartTimeMillis = SystemClock.elapsedRealtime();
+        private final long mStartTimeMillis = SystemClock.elapsedRealtime();
 
         // This lock guards all of the member variables below.
         private final Object mLock = new Object();

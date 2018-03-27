@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/icon_add"
+        android:shortcutDisabledMessage="@string/app_name"
+        android:shortcutId="prem"
+        android:shortcutLongLabel="@string/app_shortcut_long_label"
+        android:shortcutShortLabel="@string/app_shortcut_short_label">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.vsahin.moneycim.View.MainActivity"
+            android:targetPackage="com.vsahin.moneycim" />
+
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.vsahin.moneycim.View.AddAndEditSpending.AddAndEditSpendingActivity"
+            android:targetPackage="com.vsahin.moneycim" />
+
+        <categories android:name="android.shortcut.conversation" />
+    </shortcut>
+</shortcuts>

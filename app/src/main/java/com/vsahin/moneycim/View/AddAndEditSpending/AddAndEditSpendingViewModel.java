@@ -22,7 +22,7 @@ import javax.inject.Inject;
 public class AddAndEditSpendingViewModel extends AndroidViewModel {
 
     @Inject
-    public SpendingRepository spendingRepository;
+    SpendingRepository spendingRepository;
 
     final public LiveData<List<SpendingGroup>> spendingGroups;
 
@@ -33,7 +33,7 @@ public class AddAndEditSpendingViewModel extends AndroidViewModel {
         spendingGroups = getSpendingGroups();
     }
 
-    public LiveData<List<SpendingGroup>> getSpendingGroups() {
+    private LiveData<List<SpendingGroup>> getSpendingGroups() {
         return spendingRepository.getSpendingGroups();
     }
 

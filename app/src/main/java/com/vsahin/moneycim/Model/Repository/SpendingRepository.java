@@ -20,7 +20,7 @@ import javax.inject.Singleton;
 
 @Singleton
 public class SpendingRepository {
-    private AppDatabase appDatabase;
+    private final AppDatabase appDatabase;
     @Inject
     public SpendingRepository(AppDatabase appDatabase) {
         this.appDatabase = appDatabase;

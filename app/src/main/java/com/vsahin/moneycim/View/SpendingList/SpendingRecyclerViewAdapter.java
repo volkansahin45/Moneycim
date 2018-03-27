@@ -1,6 +1,7 @@
 package com.vsahin.moneycim.View.SpendingList;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,29 +29,29 @@ import butterknife.ButterKnife;
 
 public class SpendingRecyclerViewAdapter extends RecyclerView.Adapter<SpendingRecyclerViewAdapter.MyViewHolder> {
 
-    private List<Spending> spendings;
-    SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm"); //you can add dd/MM/yyyy for date
-    private  LayoutInflater layoutInflater;
-    RecyclerViewItemClickListener recyclerViewItemClickListener;
+    private final List<Spending> spendings;
+    private final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm", Locale.US); //you can add dd/MM/yyyy for date
+    private final LayoutInflater layoutInflater;
+    private final RecyclerViewItemClickListener recyclerViewItemClickListener;
     private int lastPosition = -1;
-    Context context;
+    private final Context context;
 
-    public SpendingRecyclerViewAdapter(Context context, ArrayList<Spending> spendings, RecyclerViewItemClickListener listener) {
+    SpendingRecyclerViewAdapter(Context context, ArrayList<Spending> spendings, RecyclerViewItemClickListener listener) {
         this.context = context;
         this.layoutInflater = LayoutInflater.from(context);
         this.spendings = spendings;
         this.recyclerViewItemClickListener = listener;
     }
 
+    @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         View v = layoutInflater.inflate(R.layout.item_spending_list_row, viewGroup, false);
-        MyViewHolder viewHolder = new MyViewHolder(v);
-        return viewHolder;
+        return new MyViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder viewHolder, int position) {
         Spending s = spendings.get(position);
         Double quantity = s.getRawSpending().getQuantity();
         String description = s.getRawSpending().getDescription();
@@ -101,26 +103,26 @@ public class SpendingRecyclerViewAdapter extends RecyclerView.Adapter<SpendingRe
         @BindView(R.id.txtDate)
         TextView txtDate;
 
-        public MyViewHolder(View v) {
+        MyViewHolder(View v) {
             super(v);
             ButterKnife.bind(this, v);
             v.setOnClickListener(this);
             v.setOnLongClickListener(this);
         }
 
-        public TextView getTxtDescription() {
+        TextView getTxtDescription() {
             return txtDescription;
         }
 
-        public TextView getTxtSpendingGroup() {
+        TextView getTxtSpendingGroup() {
             return txtSpendingGroup;
         }
 
-        public TextView getTxtDate() {
+        TextView getTxtDate() {
             return txtDate;
         }
 
-        public TextView getTxtQuantity() {
+        TextView getTxtQuantity() {
             return txtQuantity;
         }
 

@@ -14,7 +14,8 @@ import javax.inject.Inject;
  */
 
 public class TotalSpendingQuantityViewModel extends AndroidViewModel{
-    @Inject public SpendingRepository spendingRepository;
+    @Inject
+    SpendingRepository spendingRepository;
     final public LiveData<Double> totalSpendingQuantity;
 
     public TotalSpendingQuantityViewModel(Application application) {
@@ -24,7 +25,7 @@ public class TotalSpendingQuantityViewModel extends AndroidViewModel{
         totalSpendingQuantity = getTotalSpendingQuantity();
     }
 
-    public LiveData<Double> getTotalSpendingQuantity(){
+    private LiveData<Double> getTotalSpendingQuantity(){
         return  spendingRepository.getTotalSpendingQuantity();
     }
 }

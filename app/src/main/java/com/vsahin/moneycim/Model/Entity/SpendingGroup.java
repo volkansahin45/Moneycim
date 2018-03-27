@@ -13,7 +13,7 @@ public class SpendingGroup {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "group_id")
-    public int groupId;
+    private int groupId;
 
     @ColumnInfo(name = "group_name")
     private String groupName;

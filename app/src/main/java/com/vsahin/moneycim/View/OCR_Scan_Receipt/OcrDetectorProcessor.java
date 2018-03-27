@@ -24,10 +24,10 @@ import com.google.android.gms.vision.text.TextBlock;
  * A very simple Processor which receives detected TextBlocks and adds them to the overlay
  * as OcrGraphics.
  */
-public class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
+class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
 
-    private GraphicOverlay<OcrGraphic> mGraphicOverlay;
-    Context context;
+    private final GraphicOverlay<OcrGraphic> mGraphicOverlay;
+    private final Context context;
 
     OcrDetectorProcessor(GraphicOverlay<OcrGraphic> ocrGraphicOverlay, Context context) {
         mGraphicOverlay = ocrGraphicOverlay;

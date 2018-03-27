@@ -1,10 +1,11 @@
 package com.vsahin.moneycim.View.SpendingList;
 
-import android.arch.lifecycle.LifecycleFragment;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
@@ -14,8 +15,8 @@ import android.view.ViewGroup;
 import com.vsahin.moneycim.Model.Entity.RawSpending;
 import com.vsahin.moneycim.Model.Pojo.Spending;
 import com.vsahin.moneycim.R;
-import com.vsahin.moneycim.View.MainActivity;
-import com.vsahin.moneycim.View.AddAndEditSpending.AddAndEditSpendingFragment;
+import com.vsahin.moneycim.View.AddAndEditSpending.AddAndEditSpendingActivity;
+import com.vsahin.moneycim.View.Base.BaseFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,11 +28,12 @@ import butterknife.ButterKnife;
  * Created by Volkan Şahin on 17.08.2017.
  */
 
-public class SpendingListFragment extends LifecycleFragment implements RecyclerViewItemClickListener {
-    ArrayList<Spending> spendingList = new ArrayList<>();
-    SpendingListViewModel viewModel;
-    SpendingRecyclerViewAdapter adapter;
-    View view;
+public class SpendingListFragment extends BaseFragment implements RecyclerViewItemClickListener {
+    private final ArrayList<Spending> spendingList = new ArrayList<>();
+    private SpendingListViewModel viewModel;
+    private SpendingRecyclerViewAdapter adapter;
+    private StaggeredGridLayoutManager layoutManager;
+    private View view;
 
     @BindView(R.id.spending_recyclerview)
     RecyclerView spendingRecyclerView;
@@ -53,8 +55,9 @@ public class SpendingListFragment extends LifecycleFragment implements RecyclerV
         ButterKnife.bind(this, view);
 
         adapter = new SpendingRecyclerViewAdapter(getActivity(), spendingList, this);
+        layoutManager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
         spendingRecyclerView.setAdapter(adapter);
-        spendingRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+        spendingRecyclerView.setLayoutManager(layoutManager);
         return view;
     }
 
@@ -76,7 +79,7 @@ public class SpendingListFragment extends LifecycleFragment implements RecyclerV
 
     @Override
     public void onItemClick(RawSpending clickedSpending) {
-        ((MainActivity)getActivity()).showFragment(AddAndEditSpendingFragment.newInstance(clickedSpending));
+        startActivity(AddAndEditSpendingActivity.newIntent(getActivity(), clickedSpending));
     }
 
     @Override

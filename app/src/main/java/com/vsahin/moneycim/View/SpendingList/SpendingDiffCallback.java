@@ -10,12 +10,12 @@ import java.util.List;
  * Created by Volkan Şahin on 2.09.2017.
  */
 
-public class SpendingDiffCallback extends DiffUtil.Callback {
+class SpendingDiffCallback extends DiffUtil.Callback {
 
     private final List<Spending> oldSpendingList;
     private final List<Spending> newSpendingList;
 
-    public SpendingDiffCallback(List<Spending> oldSpendingList, List<Spending> newSpendingList) {
+    SpendingDiffCallback(List<Spending> oldSpendingList, List<Spending> newSpendingList) {
         this.oldSpendingList = oldSpendingList;
         this.newSpendingList = newSpendingList;
     }
