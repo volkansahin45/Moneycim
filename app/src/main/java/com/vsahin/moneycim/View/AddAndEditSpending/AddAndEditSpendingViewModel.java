@@ -9,8 +9,6 @@ import com.vsahin.moneycim.Model.Entity.SpendingGroup;
 import com.vsahin.moneycim.Model.Repository.SpendingRepository;
 import com.vsahin.moneycim.MoneycimApp;
 
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;

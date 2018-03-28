@@ -4,12 +4,10 @@ import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 
-import com.vsahin.moneycim.Model.Entity.RawSpending;
 import com.vsahin.moneycim.Model.Pojo.Spending;
 import com.vsahin.moneycim.Model.Repository.SpendingRepository;
 import com.vsahin.moneycim.MoneycimApp;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import javax.inject.Inject;
