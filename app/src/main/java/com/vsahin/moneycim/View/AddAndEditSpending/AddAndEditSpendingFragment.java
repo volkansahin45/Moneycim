@@ -2,11 +2,14 @@ package com.vsahin.moneycim.View.AddAndEditSpending;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,6 +62,7 @@ public class AddAndEditSpendingFragment extends Fragment{
     private AddAndEditSpendingViewModel viewModel;
     private RawSpending spending;
     private ArrayList<SpendingGroup> spendingGroupList;
+    private AlertDialog deleteConfirmDialog;
 
     public static AddAndEditSpendingFragment newInstance(RawSpending spending) {
 
@@ -153,8 +157,43 @@ public class AddAndEditSpendingFragment extends Fragment{
 
     @OnClick(R.id.delete_button)
     public void deleteSpending(){
-        viewModel.deleteSpending(spending.id);
-        getActivity().onBackPressed();
+        askForDelete();
+    }
+
+    private void askForDelete()
+    {
+        if(deleteConfirmDialog == null){
+            Resources stringResources  = getResources();
+            String title = stringResources.getString(R.string.delete);
+            String message = stringResources.getString(R.string.delete_message);
+            String cancel = stringResources.getString(R.string.cancel);
+
+            DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    switch (which){
+                        case DialogInterface.BUTTON_POSITIVE:
+                            viewModel.deleteSpending(spending.id);
+                            dialog.dismiss();
+                            getActivity().onBackPressed();
+                            break;
+                        case DialogInterface.BUTTON_NEGATIVE:
+                            dialog.dismiss();
+                            break;
+                    }
+                }
+            };
+
+            deleteConfirmDialog = new AlertDialog.Builder(getActivity())
+                .setTitle(title)
+                .setMessage(message)
+                .setIcon(R.drawable.icon_delete)
+                .setPositiveButton(title, dialogClickListener)
+                .setNegativeButton(cancel, dialogClickListener)
+                .create();
+        }
+
+        deleteConfirmDialog.show();
     }
 
     @OnClick(R.id.camera_button)

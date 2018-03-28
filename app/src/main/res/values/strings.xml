@@ -10,7 +10,7 @@
     <string name="add_a_spending">Add a Spending</string>
     <string name="quantity">Quantity</string>
     <string name="description">Description</string>
-    <string name="delete">delete</string>
+    <string name="delete">Delete</string>
     <string name="edit_a_spending">Edit a Spending</string>
     <string name="turkish_lira_symbol">₺</string>
     <string name="app_link">https://www.github.com/volkansahin45/moneycim</string>
@@ -19,5 +19,7 @@
     <string name="about">About</string>
     <string name="app_shortcut_short_label">Add</string>
     <string name="app_shortcut_long_label">Add a Spending</string>
+    <string name="delete_message">Do you want to delete?</string>
+    <string name="cancel">Cancel</string>
 
 </resources>
