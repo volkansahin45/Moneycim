@@ -49,21 +49,15 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.app_bar_layout)
     AppBarLayout appBarLayout;
 
-    private FragmentManager fragmentManager;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        fragmentManager = getSupportFragmentManager();
         setSupportActionBar(toolbar);
 
-        //Add this fragment just at start and dont add to backstack
-        if(getFragmentBackStackCount() == 0){
-            showRootFragment(SpendingListFragment.newInstance());
-        }
+        showRootFragment(SpendingListFragment.newInstance());
     }
 
     @Override
@@ -114,42 +108,8 @@ public class MainActivity extends BaseActivity {
         dialog.show();
     }
 
-    private void showRootFragment(Fragment fragment){
-        fragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, fragment)
-                .commit();
-    }
-
     @OnClick(R.id.fab)
     public void openAddAndEditSpendingActivity(){
         startActivity(AddAndEditSpendingActivity.newIntent(this));
     }
-
-    public void showFragment(Fragment nextFragment){
-        //be sure to not load same fragment
-        if(isLastFragmentInBackstack(nextFragment)){
-            return;
-        }
-
-        fragmentManager.beginTransaction()
-                .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out, android.R.anim.fade_in, android.R.anim.fade_out)
-                .replace(R.id.fragment_container , nextFragment)
-                .addToBackStack(nextFragment.getClass().getName())
-                .commit();
-    }
-
-    private boolean isLastFragmentInBackstack(Fragment fragment) {
-        String nextFragmentName = fragment.getClass().getName();
-
-        return getFragmentBackStackCount() != 0 && getLastFragmentNameInBackStack().equals(nextFragmentName);
-    }
-
-    private String getLastFragmentNameInBackStack(){
-        return fragmentManager.getBackStackEntryAt(getFragmentBackStackCount() - 1).getName();
-    }
-
-    private int getFragmentBackStackCount(){
-        return fragmentManager.getBackStackEntryCount();
-    }
-
 }
