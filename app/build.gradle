@@ -1,4 +1,7 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 27
@@ -38,8 +41,9 @@ project.ext {
     roomVersion = "1.0.0"
     architectureComponents = "1.1.1"
     androidDbDebugVersion = "1.0.1"
-    googleVisionApiVersion = "12.0.0"
+    googleVisionApiVersion = "12.0.1"
     androidSupportLibrary = "27.1.0"
+    androidKtx = "0.2"
 }
 
 dependencies {
@@ -56,12 +60,12 @@ dependencies {
     implementation "com.android.support:cardview-v7:$androidSupportLibrary"
 
     // Dagger
-    annotationProcessor "com.google.dagger:dagger-compiler:$project.daggerVersion"
-    implementation "com.google.dagger:dagger:$project.daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+    implementation "com.google.dagger:dagger:$daggerVersion"
 
     // ButterKnife
-    implementation "com.jakewharton:butterknife:$project.butterKnifeVersion"
-    annotationProcessor "com.jakewharton:butterknife-compiler:$project.butterKnifeVersion"
+    implementation "com.jakewharton:butterknife:$butterKnifeVersion"
+    kapt "com.jakewharton:butterknife-compiler:$butterKnifeVersion"
 
     //android livedata, lifecycle etc
     implementation "android.arch.lifecycle:runtime:$architectureComponents"
@@ -70,12 +74,21 @@ dependencies {
 
     //room
     implementation "android.arch.persistence.room:runtime:$roomVersion"
-    annotationProcessor "android.arch.persistence.room:compiler:$roomVersion"
-
+    kapt "android.arch.persistence.room:compiler:$roomVersion"
 
     //Database and Shared Preferences Debug
     debugImplementation "com.amitshekhar.android:debug-db:$androidDbDebugVersion"
 
     //Google Vision API
     implementation "com.google.android.gms:play-services-vision:$googleVisionApiVersion"
+
+    //Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+    //Android KTX
+    implementation "androidx.core:core-ktx:$androidKtx"
+
+    implementation "com.android.support:customtabs:$androidSupportLibrary"
 }
+
+
