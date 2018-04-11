@@ -4,11 +4,14 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 
 import com.vsahin.moneycim.Model.Entity.RawSpending;
 import com.vsahin.moneycim.Model.Pojo.Spending;
@@ -34,7 +37,7 @@ public class SpendingListFragment extends BaseFragment implements RecyclerViewIt
     private View view;
 
     @BindView(R.id.spending_recyclerview)
-    RecyclerView spendingRecyclerView;
+    GridRecyclerView spendingRecyclerView;
 
     public static SpendingListFragment newInstance() {
         return new SpendingListFragment();
@@ -53,9 +56,11 @@ public class SpendingListFragment extends BaseFragment implements RecyclerViewIt
         ButterKnife.bind(this, view);
 
         adapter = new SpendingRecyclerViewAdapter(getActivity(), spendingList, this);
-        layoutManager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
+
+        layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         spendingRecyclerView.setAdapter(adapter);
         spendingRecyclerView.setLayoutManager(layoutManager);
+
         return view;
     }
 
