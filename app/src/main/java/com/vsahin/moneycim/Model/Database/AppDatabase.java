@@ -1,8 +1,8 @@
 package com.vsahin.moneycim.Model.Database;
 
-import android.arch.persistence.room.Database;
-import android.arch.persistence.room.RoomDatabase;
-import android.arch.persistence.room.TypeConverters;
+import androidx.room.Database;
+import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 
 import com.vsahin.moneycim.Model.Dao.SpendingDao;
 import com.vsahin.moneycim.Model.Dao.SpendingGroupDao;

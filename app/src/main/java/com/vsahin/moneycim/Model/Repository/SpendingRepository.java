@@ -1,14 +1,13 @@
 package com.vsahin.moneycim.Model.Repository;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import com.vsahin.moneycim.Model.Database.AppDatabase;
 import com.vsahin.moneycim.Model.Entity.RawSpending;
 import com.vsahin.moneycim.Model.Entity.SpendingGroup;
 import com.vsahin.moneycim.Model.Pojo.Spending;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import javax.inject.Inject;

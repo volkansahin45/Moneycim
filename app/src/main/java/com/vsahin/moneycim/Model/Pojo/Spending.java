@@ -1,7 +1,7 @@
 package com.vsahin.moneycim.Model.Pojo;
 
-import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.Embedded;
+import androidx.room.ColumnInfo;
+import androidx.room.Embedded;
 
 import com.vsahin.moneycim.Model.Entity.RawSpending;
 

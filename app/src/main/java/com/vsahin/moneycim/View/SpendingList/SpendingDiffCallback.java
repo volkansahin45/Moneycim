@@ -1,6 +1,6 @@
 package com.vsahin.moneycim.View.SpendingList;
 
-import android.support.v7.util.DiffUtil;
+import androidx.recyclerview.widget.DiffUtil;
 
 import com.vsahin.moneycim.Model.Pojo.Spending;
 

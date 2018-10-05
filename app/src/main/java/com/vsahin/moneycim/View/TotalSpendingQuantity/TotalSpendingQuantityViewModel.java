@@ -1,8 +1,8 @@
 package com.vsahin.moneycim.View.TotalSpendingQuantity;
 
 import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
-import android.arch.lifecycle.LiveData;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 
 import com.vsahin.moneycim.Model.Repository.SpendingRepository;
 import com.vsahin.moneycim.MoneycimApp;
