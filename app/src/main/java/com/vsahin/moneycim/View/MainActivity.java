@@ -4,21 +4,24 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import com.google.android.material.appbar.AppBarLayout;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.vsahin.moneycim.R;
-import com.vsahin.moneycim.View.AddAndEditSpending.AddAndEditSpendingActivity;
+import com.vsahin.moneycim.View.AddAndEditSpending.AddAndEditSpendingFragment;
 import com.vsahin.moneycim.View.Base.BaseActivity;
 import com.vsahin.moneycim.View.SpendingList.SpendingListFragment;
 
+import java.util.List;
+
+import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -46,6 +49,20 @@ public class MainActivity extends BaseActivity {
         setSupportActionBar(toolbar);
 
         showRootFragment(SpendingListFragment.newInstance());
+
+
+        fragmentManager.addOnBackStackChangedListener(() -> {
+            List<Fragment> fragments = fragmentManager.getFragments();
+            Fragment lastFragment = fragments.get(fragments.size() - 1);
+
+            if(lastFragment instanceof SpendingListFragment){
+                appBarLayout.setExpanded(true);
+                fab.show();
+            } else {
+                appBarLayout.setExpanded(false);
+                fab.hide();
+            }
+        });
     }
 
     @Override
@@ -98,6 +115,6 @@ public class MainActivity extends BaseActivity {
 
     @OnClick(R.id.fab)
     public void openAddAndEditSpendingActivity(){
-        startActivity(AddAndEditSpendingActivity.newIntent(this));
+        showFragment(AddAndEditSpendingFragment.newInstance(null));
     }
 }

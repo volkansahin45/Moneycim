@@ -4,6 +4,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,8 +13,10 @@ import android.view.ViewGroup;
 import com.vsahin.moneycim.Model.Entity.RawSpending;
 import com.vsahin.moneycim.Model.Pojo.Spending;
 import com.vsahin.moneycim.R;
-import com.vsahin.moneycim.View.AddAndEditSpending.AddAndEditSpendingActivity;
+import com.vsahin.moneycim.View.AddAndEditSpending.AddAndEditSpendingFragment;
+import com.vsahin.moneycim.View.Base.BaseActivity;
 import com.vsahin.moneycim.View.Base.BaseFragment;
+import com.vsahin.moneycim.View.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,7 +81,7 @@ public class SpendingListFragment extends BaseFragment implements RecyclerViewIt
 
     @Override
     public void onItemClick(RawSpending clickedSpending) {
-        startActivity(AddAndEditSpendingActivity.newIntent(getActivity(), clickedSpending));
+        ((MainActivity)getActivity()).showFragment(AddAndEditSpendingFragment.newInstance(clickedSpending));
     }
 
     @Override

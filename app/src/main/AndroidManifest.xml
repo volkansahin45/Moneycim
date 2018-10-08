@@ -29,7 +29,6 @@
             <meta-data android:name="android.app.shortcuts" android:resource="@xml/shortcuts"/>
         </activity>
         <activity android:name=".View.OCR_Scan_Receipt.OcrCaptureActivity" />
-        <activity android:name=".View.AddAndEditSpending.AddAndEditSpendingActivity" />
     </application>
 
 </manifest>

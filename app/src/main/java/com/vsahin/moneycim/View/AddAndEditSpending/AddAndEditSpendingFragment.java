@@ -82,6 +82,10 @@ public class AddAndEditSpendingFragment extends Fragment{
 
         spending = (RawSpending) getArguments().getSerializable("spending");
 
+        if (spending == null) {
+            spending = new RawSpending();
+        }
+
         return view;
     }
 

@@ -10,7 +10,7 @@ import com.vsahin.moneycim.R;
 
 public abstract class BaseActivity  extends AppCompatActivity {
 
-    FragmentManager fragmentManager;
+    protected FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -27,7 +27,7 @@ public abstract class BaseActivity  extends AppCompatActivity {
         }
     }
 
-    protected void showFragment(Fragment nextFragment){
+    public void showFragment(Fragment nextFragment){
         //be sure to not load same fragment
         if(isLastFragmentInBackstack(nextFragment)){
             return;
