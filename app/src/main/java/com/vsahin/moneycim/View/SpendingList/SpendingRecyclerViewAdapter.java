@@ -63,8 +63,6 @@ public class SpendingRecyclerViewAdapter extends RecyclerView.Adapter<SpendingRe
         viewHolder.getTxtDescription().setText(description);
         viewHolder.getTxtDate().setText(dateFormat.format(date));
         viewHolder.getTxtSpendingGroup().setText(group);
-
-        setAnimation(viewHolder.itemView, position);
     }
 
     @Override
@@ -79,14 +77,6 @@ public class SpendingRecyclerViewAdapter extends RecyclerView.Adapter<SpendingRe
         this.spendings.clear();
         this.spendings.addAll(spendings);
         diffResult.dispatchUpdatesTo(this);
-    }
-
-    private void setAnimation(View viewToAnimate, int position) {
-        if (position > lastPosition) {
-            Animation slide_up = AnimationUtils.loadAnimation(context, R.anim.slide_up);
-            viewToAnimate.startAnimation(slide_up);
-            lastPosition = position;
-        }
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener, View.OnClickListener {

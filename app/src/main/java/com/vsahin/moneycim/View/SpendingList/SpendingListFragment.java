@@ -33,7 +33,7 @@ public class SpendingListFragment extends BaseFragment implements RecyclerViewIt
     private View view;
 
     @BindView(R.id.spending_recyclerview)
-    GridRecyclerView spendingRecyclerView;
+    RecyclerView spendingRecyclerView;
 
     public static SpendingListFragment newInstance() {
         return new SpendingListFragment();
