@@ -1,5 +1,6 @@
 package com.vsahin.moneycim.View.AddAndEditSpending;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
@@ -18,9 +19,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.common.api.CommonStatusCodes;
+import com.google.android.material.snackbar.Snackbar;
 import com.vsahin.moneycim.Model.Entity.RawSpending;
 import com.vsahin.moneycim.Model.Entity.SpendingGroup;
 import com.vsahin.moneycim.R;
@@ -37,6 +38,9 @@ import butterknife.OnClick;
 public class AddAndEditSpendingFragment extends Fragment{
 
     private static final int RC_OCR_CAPTURE = 3;
+
+    @BindView(R.id.root_view)
+    ConstraintLayout rootView;
 
     @BindView(R.id.group_spinner)
     Spinner groupSpinner;
@@ -123,18 +127,18 @@ public class AddAndEditSpendingFragment extends Fragment{
         }
 
         if(groupId == 0){
-            showToast("Please Select Group");
+            showSnackBar("Please Select Group");
             return;
         }
 
         if(quantityString.equals("")) {
-            showToast("Please write correct quantity");
+            showSnackBar("Please write correct quantity");
             return;
         }
 
         fillSpending(groupId, Double.valueOf(quantityString), description, date );
         addSpending(spending);
-        showToast("Successfully Saved");
+        showSnackBar("Successfully Saved");
         getActivity().onBackPressed();
     }
 
@@ -142,8 +146,10 @@ public class AddAndEditSpendingFragment extends Fragment{
         viewModel.addSpending(s);
     }
 
-    private void showToast(String text){
-        Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
+    private void showSnackBar(String text){
+        Snackbar.make(rootView, text, Snackbar.LENGTH_SHORT)
+                .setAction("OK", v -> { })
+                .show();
     }
 
 
@@ -216,7 +222,7 @@ public class AddAndEditSpendingFragment extends Fragment{
                     quantityEditText.setText(text);
                 }
             } else {
-                showToast("Error");
+                showSnackBar("Error");
             }
         }
     }

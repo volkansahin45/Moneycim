@@ -30,12 +30,10 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import com.google.android.material.snackbar.Snackbar;
 import androidx.core.app.ActivityCompat;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -176,7 +174,7 @@ public final class OcrCaptureActivity extends BaseActivity {
             boolean hasLowStorage = registerReceiver(null, lowstorageFilter) != null;
 
             if (hasLowStorage) {
-                Toast.makeText(this, R.string.low_storage_error, Toast.LENGTH_LONG).show();
+                Snackbar.make(mGraphicOverlay, R.string.low_storage_error, Snackbar.LENGTH_LONG).show();
                 Log.w(TAG, getString(R.string.low_storage_error));
             }
         }
