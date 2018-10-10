@@ -44,8 +44,6 @@ class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
     @Override
     public void receiveDetections(Detector.Detections<TextBlock> detections) {
         mGraphicOverlay.clear();
-        //final String result;
-        //String detectedText = "";
         SparseArray<TextBlock> items = detections.getDetectedItems();
         for (int i = 0; i < items.size(); ++i) {
 
@@ -54,14 +52,6 @@ class OcrDetectorProcessor implements Detector.Processor<TextBlock> {
             mGraphicOverlay.add(graphic);
             //detectedText += item.getValue();
         }
-
-        /*result = detectedText;
-        ((OcrCaptureActivity)context).runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(context, result, Toast.LENGTH_SHORT).show();
-            }
-        });*/
     }
 
     /**
