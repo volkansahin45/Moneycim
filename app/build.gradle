@@ -57,13 +57,13 @@ dependencies {
     kapt "com.jakewharton:butterknife-compiler:$rootProject.butterKnifeVersion"
 
     //android livedata, lifecycle etc
-    implementation 'androidx.lifecycle:lifecycle-runtime:2.0.0'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
-    annotationProcessor 'androidx.lifecycle:lifecycle-compiler:2.0.0'
+    implementation "androidx.lifecycle:lifecycle-runtime:$architectureComponentsVersion"
+    implementation "androidx.lifecycle:lifecycle-extensions:$architectureComponentsVersion"
+    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$architectureComponentsVersion"
 
     //room
-    implementation 'androidx.room:room-runtime:2.0.0'
-    kapt 'androidx.room:room-compiler:2.0.0'
+    implementation "androidx.room:room-runtime:$architectureComponentsVersion"
+    kapt "androidx.room:room-compiler:$architectureComponentsVersion"
 
     //Database and Shared Preferences Debug
     debugImplementation "com.amitshekhar.android:debug-db:$rootProject.androidDbDebugVersion"

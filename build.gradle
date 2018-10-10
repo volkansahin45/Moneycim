@@ -6,9 +6,9 @@ buildscript {
         daggerVersion = "2.11"
         butterKnifeVersion = "9.0.0-SNAPSHOT"
         roomVersion = "1.1.1"
-        architectureComponents = "1.1.1"
+        architectureComponentsVersion = "2.0.0"
         androidDbDebugVersion = "1.0.1"
-        googleVisionApiVersion = "15.0.2"
+        googleVisionApiVersion = "16.2.0"
         androidSupportLibrary = "28.0.0"
         androidKtx = "1.0.0"
         kotlin_version = '1.2.71'
