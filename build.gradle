@@ -4,7 +4,7 @@ buildscript {
 
     ext {
         daggerVersion = "2.11"
-        butterKnifeVersion = "9.0.0-SNAPSHOT"
+        butterKnifeVersion = "9.0.0-rc1"
         roomVersion = "1.1.1"
         architectureComponentsVersion = "2.0.0"
         androidDbDebugVersion = "1.0.1"
@@ -31,9 +31,6 @@ allprojects {
         jcenter()
         maven { url 'https://maven.google.com' }
         google()
-        repositories {
-            maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
-        }
     }
 }
 
