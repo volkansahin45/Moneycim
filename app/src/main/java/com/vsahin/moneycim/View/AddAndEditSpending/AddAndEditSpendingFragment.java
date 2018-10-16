@@ -25,6 +25,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.vsahin.moneycim.Model.Entity.RawSpending;
 import com.vsahin.moneycim.Model.Entity.SpendingGroup;
 import com.vsahin.moneycim.R;
+import com.vsahin.moneycim.View.Base.BaseFragment;
 import com.vsahin.moneycim.View.OCR_Scan_Receipt.OcrCaptureActivity;
 
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class AddAndEditSpendingFragment extends Fragment{
+public class AddAndEditSpendingFragment extends BaseFragment {
 
     private static final int RC_OCR_CAPTURE = 3;
 
@@ -64,6 +65,8 @@ public class AddAndEditSpendingFragment extends Fragment{
     ImageButton deleteButton;
 
     private AddAndEditSpendingViewModel viewModel;
+    private Unbinder unbinder;
+
     private RawSpending spending;
     private ArrayList<SpendingGroup> spendingGroupList;
     private AlertDialog deleteConfirmDialog;
@@ -82,7 +85,7 @@ public class AddAndEditSpendingFragment extends Fragment{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_add_and_edit_spending, container, false);
-        ButterKnife.bind(this, view);
+        unbinder = ButterKnife.bind(this, view);
 
         spending = (RawSpending) getArguments().getSerializable("spending");
 
@@ -97,6 +100,10 @@ public class AddAndEditSpendingFragment extends Fragment{
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         viewModel = ViewModelProviders.of(this).get(AddAndEditSpendingViewModel.class);
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
         subscribeSpendingGroups();
     }
 

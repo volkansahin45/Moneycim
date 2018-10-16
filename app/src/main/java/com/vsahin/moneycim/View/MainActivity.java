@@ -40,11 +40,13 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.app_bar_layout)
     AppBarLayout appBarLayout;
 
+    Unbinder unbinder;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+        unbinder = ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
 
@@ -63,6 +65,12 @@ public class MainActivity extends BaseActivity {
                 fab.hide();
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbinder.unbind();
     }
 
     @Override

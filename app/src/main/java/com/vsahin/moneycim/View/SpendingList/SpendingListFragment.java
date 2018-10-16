@@ -29,6 +29,8 @@ import butterknife.ButterKnife;
  */
 
 public class SpendingListFragment extends BaseFragment implements RecyclerViewItemClickListener {
+    private Unbinder unbinder;
+
     private final ArrayList<Spending> spendingList = new ArrayList<>();
     private SpendingListViewModel viewModel;
     private SpendingRecyclerViewAdapter adapter;
@@ -51,8 +53,8 @@ public class SpendingListFragment extends BaseFragment implements RecyclerViewIt
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_spending_list, container, false);
-        ButterKnife.bind(this, view);
+        View view = inflater.inflate(R.layout.fragment_spending_list, container, false);
+        unbinder = ButterKnife.bind(this, view);
 
         adapter = new SpendingRecyclerViewAdapter(getActivity(), spendingList, this);
 
@@ -92,6 +94,6 @@ public class SpendingListFragment extends BaseFragment implements RecyclerViewIt
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        view = null;
+        unbinder.unbind();
     }
 }

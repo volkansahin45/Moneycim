@@ -27,6 +27,8 @@ public class TotalSpendingQuantityFragment extends BaseFragment {
     @BindView(R.id.quantity)
     TextView txtQuantity;
 
+    Unbinder unbinder;
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -38,8 +40,14 @@ public class TotalSpendingQuantityFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_total_spending_quantity, container, false);
-        ButterKnife.bind(this, v);
+        unbinder = ButterKnife.bind(this, v);
         return v;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
     }
 
     private void subscribeTotalQuantity(){
