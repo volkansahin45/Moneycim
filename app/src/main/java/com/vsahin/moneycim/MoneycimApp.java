@@ -1,30 +1,37 @@
 package com.vsahin.moneycim;
 
+import android.app.Activity;
 import android.app.Application;
 
-import com.vsahin.moneycim.Di.AppComponent;
-import com.vsahin.moneycim.Di.AppModule;
 import com.vsahin.moneycim.Di.DaggerAppComponent;
+
+import javax.inject.Inject;
+
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.HasActivityInjector;
 
 /**
  * Created by Volkan Şahin on 17.08.2017.
  */
 
-public class MoneycimApp extends Application {
+public class MoneycimApp extends Application implements HasActivityInjector {
 
-    private AppComponent appComponent;
+    @Inject
+    DispatchingAndroidInjector<Activity> dispatchingAndroidInjector;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
-        appComponent = DaggerAppComponent
+        DaggerAppComponent
                 .builder()
-                .appModule(new AppModule(this))
-                .build();
+                .create(this)
+                .inject(this);
     }
 
-    public AppComponent getAppComponent(){
-        return appComponent;
+    @Override
+    public AndroidInjector<Activity> activityInjector() {
+        return dispatchingAndroidInjector;
     }
 }

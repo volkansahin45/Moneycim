@@ -1,10 +1,7 @@
 package com.vsahin.moneycim.View.TotalSpendingQuantity;
 
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +10,15 @@ import android.widget.TextView;
 import com.vsahin.moneycim.R;
 import com.vsahin.moneycim.View.Base.BaseFragment;
 
+import javax.inject.Inject;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
+import dagger.android.support.AndroidSupportInjection;
 
 /**
  * Created by Volkan Şahin on 21.08.2017.
@@ -22,7 +26,8 @@ import butterknife.ButterKnife;
 
 public class TotalSpendingQuantityFragment extends BaseFragment {
 
-    private TotalSpendingQuantityViewModel viewModel;
+    @Inject
+    TotalSpendingQuantityViewModel viewModel;
 
     @BindView(R.id.quantity)
     TextView txtQuantity;
@@ -30,9 +35,9 @@ public class TotalSpendingQuantityFragment extends BaseFragment {
     Unbinder unbinder;
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        viewModel = ViewModelProviders.of(this).get(TotalSpendingQuantityViewModel.class);
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        AndroidSupportInjection.inject(this);
         subscribeTotalQuantity();
     }
 
