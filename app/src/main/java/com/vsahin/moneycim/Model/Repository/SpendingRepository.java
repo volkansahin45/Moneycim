@@ -1,8 +1,5 @@
 package com.vsahin.moneycim.Model.Repository;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-
 import com.vsahin.moneycim.Model.Database.AppDatabase;
 import com.vsahin.moneycim.Model.Entity.RawSpending;
 import com.vsahin.moneycim.Model.Entity.SpendingGroup;
@@ -12,6 +9,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+
+import androidx.lifecycle.LiveData;
 
 /**
  * Created by Volkan Şahin on 17.08.2017.

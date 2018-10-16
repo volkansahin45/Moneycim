@@ -1,11 +1,7 @@
 package com.vsahin.moneycim.View.SpendingList;
 
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,34 +10,50 @@ import com.vsahin.moneycim.Model.Entity.RawSpending;
 import com.vsahin.moneycim.Model.Pojo.Spending;
 import com.vsahin.moneycim.R;
 import com.vsahin.moneycim.View.AddAndEditSpending.AddAndEditSpendingFragment;
-import com.vsahin.moneycim.View.Base.BaseActivity;
 import com.vsahin.moneycim.View.Base.BaseFragment;
 import com.vsahin.moneycim.View.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
+import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
+import dagger.android.support.AndroidSupportInjection;
 
 /**
  * Created by Volkan Şahin on 17.08.2017.
  */
 
 public class SpendingListFragment extends BaseFragment implements RecyclerViewItemClickListener {
+
+    @Inject
+    SpendingListViewModel viewModel;
+
     private Unbinder unbinder;
 
     private final ArrayList<Spending> spendingList = new ArrayList<>();
-    private SpendingListViewModel viewModel;
     private SpendingRecyclerViewAdapter adapter;
     private StaggeredGridLayoutManager layoutManager;
-    private View view;
 
     @BindView(R.id.spending_recyclerview)
     RecyclerView spendingRecyclerView;
 
     public static SpendingListFragment newInstance() {
         return new SpendingListFragment();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        AndroidSupportInjection.inject(this);
+        subscribeSpendings();
     }
 
     @Override
@@ -63,13 +75,6 @@ public class SpendingListFragment extends BaseFragment implements RecyclerViewIt
         spendingRecyclerView.setLayoutManager(layoutManager);
 
         return view;
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        viewModel = ViewModelProviders.of(this).get(SpendingListViewModel.class);
-        subscribeSpendings();
     }
 
     private void subscribeSpendings() {

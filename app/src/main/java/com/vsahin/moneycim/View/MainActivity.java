@@ -19,14 +19,24 @@ import com.vsahin.moneycim.View.SpendingList.SpendingListFragment;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Unbinder;
+import dagger.android.AndroidInjection;
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.support.HasSupportFragmentInjector;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements HasSupportFragmentInjector {
+
+    @Inject
+    DispatchingAndroidInjector<Fragment> fragmentInjector;
 
     @BindView(R.id.container)
     CoordinatorLayout container;
@@ -44,6 +54,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         unbinder = ButterKnife.bind(this);
@@ -124,5 +135,10 @@ public class MainActivity extends BaseActivity {
     @OnClick(R.id.fab)
     public void openAddAndEditSpendingActivity(){
         showFragment(AddAndEditSpendingFragment.newInstance(null));
+    }
+
+    @Override
+    public AndroidInjector<Fragment> supportFragmentInjector() {
+        return fragmentInjector;
     }
 }
