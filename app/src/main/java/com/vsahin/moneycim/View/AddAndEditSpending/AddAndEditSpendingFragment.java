@@ -70,8 +70,6 @@ public class AddAndEditSpendingFragment extends BaseFragment {
     @Inject
     AddAndEditSpendingViewModel viewModel;
 
-    private Unbinder unbinder;
-
     private RawSpending spending;
     private ArrayList<SpendingGroup> spendingGroupList;
     private AlertDialog deleteConfirmDialog;
@@ -88,7 +86,6 @@ public class AddAndEditSpendingFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_add_and_edit_spending, container, false);
         unbinder = ButterKnife.bind(this, view);
 
@@ -99,12 +96,6 @@ public class AddAndEditSpendingFragment extends BaseFragment {
         }
 
         return view;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
     }
 
     @Override

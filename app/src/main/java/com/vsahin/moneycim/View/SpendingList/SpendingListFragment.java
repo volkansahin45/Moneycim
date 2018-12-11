@@ -18,6 +18,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.RecyclerView;
@@ -35,8 +36,6 @@ public class SpendingListFragment extends BaseFragment implements RecyclerViewIt
 
     @Inject
     SpendingListViewModel viewModel;
-
-    private Unbinder unbinder;
 
     private final ArrayList<Spending> spendingList = new ArrayList<>();
     private SpendingRecyclerViewAdapter adapter;
@@ -64,7 +63,7 @@ public class SpendingListFragment extends BaseFragment implements RecyclerViewIt
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_spending_list, container, false);
         unbinder = ButterKnife.bind(this, view);
 
@@ -94,11 +93,5 @@ public class SpendingListFragment extends BaseFragment implements RecyclerViewIt
     @Override
     public void onItemLongClick(int longClickedSpendingId) {
         viewModel.deleteSpending(longClickedSpendingId);
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
     }
 }
