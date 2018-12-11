@@ -77,12 +77,7 @@ public class SpendingListFragment extends BaseFragment implements RecyclerViewIt
     }
 
     private void subscribeSpendings() {
-        viewModel.spendings.observe(this, new Observer<List<Spending>>() {
-            @Override
-            public void onChanged(final List<Spending> spendings) {
-                adapter.updateItems(spendings);
-            }
-        });
+        viewModel.spendings.observe(this, spendings -> adapter.updateItems(spendings));
     }
 
     @Override

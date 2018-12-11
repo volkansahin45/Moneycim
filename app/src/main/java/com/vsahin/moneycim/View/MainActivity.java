@@ -103,12 +103,9 @@ public class MainActivity extends BaseActivity {
         dialog.setContentView(R.layout.activity_main_dialog_about);
 
         ImageView playStoreImage = dialog.findViewById(R.id.play_store_icon);
-        playStoreImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String url = "market://search?q=pub:" + getString(R.string.app_play_store_id);
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
-            }
+        playStoreImage.setOnClickListener(view -> {
+            String url = "market://search?q=pub:" + getString(R.string.app_play_store_id);
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
         });
 
         dialog.show();

@@ -48,14 +48,11 @@ public class TotalSpendingQuantityFragment extends BaseFragment {
     }
 
     private void subscribeTotalQuantity(){
-        viewModel.totalSpendingQuantity.observe(this, new Observer<Double>() {
-            @Override
-            public void onChanged(final Double quantity) {
-                if(quantity != null){
-                    showTotalQuantityInUi(quantity, txtQuantity);
-                } else {
-                    showTotalQuantityInUi(0.0, txtQuantity);
-                }
+        viewModel.totalSpendingQuantity.observe(this, quantity -> {
+            if(quantity != null){
+                showTotalQuantityInUi(quantity, txtQuantity);
+            } else {
+                showTotalQuantityInUi(0.0, txtQuantity);
             }
         });
     }

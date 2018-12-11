@@ -106,15 +106,12 @@ public class AddAndEditSpendingFragment extends BaseFragment {
     }
 
     private void subscribeSpendingGroups() {
-        viewModel.spendingGroups.observe(this, new Observer<List<SpendingGroup>>() {
-            @Override
-            public void onChanged(@Nullable List<SpendingGroup> spendingGroups) {
-                spendingGroupList = (ArrayList<SpendingGroup>) spendingGroups;
-                fillSpinner(groupSpinner, spendingGroupList);
-                if(spending.getId() != 0){
-                    setTakenSpendingDataToFormElements();
-                    deleteButton.setVisibility(View.VISIBLE);
-                }
+        viewModel.spendingGroups.observe(this, spendingGroups -> {
+            spendingGroupList = (ArrayList<SpendingGroup>) spendingGroups;
+            fillSpinner(groupSpinner, spendingGroupList);
+            if(spending.getId() != 0){
+                setTakenSpendingDataToFormElements();
+                deleteButton.setVisibility(View.VISIBLE);
             }
         });
     }
@@ -183,19 +180,16 @@ public class AddAndEditSpendingFragment extends BaseFragment {
             String message = stringResources.getString(R.string.delete_message);
             String cancel = stringResources.getString(R.string.cancel);
 
-            DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    switch (which){
-                        case DialogInterface.BUTTON_POSITIVE:
-                            viewModel.deleteSpending(spending.id);
-                            dialog.dismiss();
-                            getActivity().onBackPressed();
-                            break;
-                        case DialogInterface.BUTTON_NEGATIVE:
-                            dialog.dismiss();
-                            break;
-                    }
+            DialogInterface.OnClickListener dialogClickListener = (dialog, which) -> {
+                switch (which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        viewModel.deleteSpending(spending.id);
+                        dialog.dismiss();
+                        getActivity().onBackPressed();
+                        break;
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        dialog.dismiss();
+                        break;
                 }
             };
 
