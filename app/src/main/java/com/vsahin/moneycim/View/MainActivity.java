@@ -61,8 +61,9 @@ public class MainActivity extends BaseActivity implements HasSupportFragmentInje
 
         setSupportActionBar(toolbar);
 
-        showRootFragment(SpendingListFragment.newInstance());
-
+        if(savedInstanceState == null){
+            showRootFragment(SpendingListFragment.newInstance());
+        }
 
         fragmentManager.addOnBackStackChangedListener(() -> {
             List<Fragment> fragments = fragmentManager.getFragments();
