@@ -92,7 +92,7 @@ public class MainActivity extends BaseActivity {
         Intent i = new Intent(Intent.ACTION_SEND);
         i.setType("text/plain");
         i.putExtra(Intent.EXTRA_SUBJECT, R.string.app_name);
-        String sAux = "Hey look at this application\n" + getString(R.string.app_link) +"\n";
+        String sAux = "Hey look at this application\n" + getString(R.string.app_link);
         i.putExtra(Intent.EXTRA_TEXT, sAux);
         startActivity(Intent.createChooser(i, "Share"));
     }
