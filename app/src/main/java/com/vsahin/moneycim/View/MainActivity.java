@@ -19,8 +19,6 @@ import com.vsahin.moneycim.View.SpendingList.SpendingListFragment;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
@@ -28,10 +26,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
-import dagger.android.AndroidInjection;
-import dagger.android.AndroidInjector;
-import dagger.android.DispatchingAndroidInjector;
-import dagger.android.support.HasSupportFragmentInjector;
 
 public class MainActivity extends BaseActivity {
     @BindView(R.id.container)
