@@ -33,11 +33,7 @@ import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
 
-public class MainActivity extends BaseActivity implements HasSupportFragmentInjector {
-
-    @Inject
-    DispatchingAndroidInjector<Fragment> fragmentInjector;
-
+public class MainActivity extends BaseActivity {
     @BindView(R.id.container)
     CoordinatorLayout container;
 
@@ -50,11 +46,8 @@ public class MainActivity extends BaseActivity implements HasSupportFragmentInje
     @BindView(R.id.app_bar_layout)
     AppBarLayout appBarLayout;
 
-    Unbinder unbinder;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         unbinder = ButterKnife.bind(this);
@@ -77,12 +70,6 @@ public class MainActivity extends BaseActivity implements HasSupportFragmentInje
                 fab.hide();
             }
         });
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        unbinder.unbind();
     }
 
     @Override
@@ -134,12 +121,7 @@ public class MainActivity extends BaseActivity implements HasSupportFragmentInje
     }
 
     @OnClick(R.id.fab)
-    public void openAddAndEditSpendingActivity(){
+    public void openAddAndEditSpendingFragment(){
         showFragment(AddAndEditSpendingFragment.newInstance(null));
-    }
-
-    @Override
-    public AndroidInjector<Fragment> supportFragmentInjector() {
-        return fragmentInjector;
     }
 }

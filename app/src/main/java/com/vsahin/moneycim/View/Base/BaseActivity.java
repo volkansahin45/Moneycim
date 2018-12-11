@@ -5,18 +5,38 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.appcompat.app.AppCompatActivity;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+import dagger.android.AndroidInjection;
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.support.HasSupportFragmentInjector;
 
 import com.vsahin.moneycim.R;
 
-public abstract class BaseActivity  extends AppCompatActivity {
+import javax.inject.Inject;
+
+public abstract class BaseActivity  extends AppCompatActivity implements HasSupportFragmentInjector {
+
+    @Inject
+    DispatchingAndroidInjector<Fragment> fragmentInjector;
+
+    protected Unbinder unbinder;
 
     protected FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
 
         fragmentManager = getSupportFragmentManager();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbinder.unbind();
     }
 
     protected void showRootFragment(Fragment fragment){
@@ -52,5 +72,10 @@ public abstract class BaseActivity  extends AppCompatActivity {
 
     protected int getFragmentBackStackCount(){
         return fragmentManager.getBackStackEntryCount();
+    }
+
+    @Override
+    public AndroidInjector<Fragment> supportFragmentInjector() {
+        return fragmentInjector;
     }
 }
