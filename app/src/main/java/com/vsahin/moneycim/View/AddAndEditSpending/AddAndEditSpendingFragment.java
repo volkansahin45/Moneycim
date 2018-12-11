@@ -239,7 +239,7 @@ public class AddAndEditSpendingFragment extends BaseFragment {
         for (SpendingGroup group: spendingGroups) {
             stringGroups.add(group.getGroupName());
         }
-        ArrayAdapter adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, stringGroups);
+        ArrayAdapter adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, stringGroups);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         groupSpinner.setAdapter(adapter);
     }
