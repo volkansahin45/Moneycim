@@ -4,6 +4,7 @@ import com.vsahin.moneycim.Di.Modules.ActivityBuilder;
 import com.vsahin.moneycim.Di.Modules.DataModule;
 import com.vsahin.moneycim.Di.Modules.AppModule;
 import com.vsahin.moneycim.Di.Modules.FragmentBuilder;
+import com.vsahin.moneycim.Di.Modules.ViewModelModule;
 import com.vsahin.moneycim.MoneycimApp;
 
 import javax.inject.Singleton;
@@ -22,7 +23,8 @@ import dagger.android.support.AndroidSupportInjectionModule;
         AppModule.class,
         ActivityBuilder.class,
         FragmentBuilder.class,
-        DataModule.class
+        DataModule.class,
+        ViewModelModule.class
 })
 interface AppComponent extends AndroidInjector<MoneycimApp> {
     @Component.Builder
