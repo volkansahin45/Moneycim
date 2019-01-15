@@ -14,7 +14,7 @@ import androidx.lifecycle.ViewModel;
 public class TotalSpendingQuantityViewModel extends ViewModel {
     SpendingRepository spendingRepository;
 
-    final public LiveData<Double> totalSpendingQuantity;
+    final LiveData<Double> totalSpendingQuantity;
 
     @Inject
     public TotalSpendingQuantityViewModel(SpendingRepository spendingRepository) {

@@ -12,20 +12,19 @@ import com.vsahin.moneycim.R;
 import com.vsahin.moneycim.View.AddAndEditSpending.AddAndEditSpendingFragment;
 import com.vsahin.moneycim.View.Base.BaseFragment;
 import com.vsahin.moneycim.View.MainActivity;
+import com.vsahin.moneycim.ViewModelFactory;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import dagger.android.support.AndroidSupportInjection;
 
 /**
@@ -34,8 +33,7 @@ import dagger.android.support.AndroidSupportInjection;
 
 public class SpendingListFragment extends BaseFragment implements RecyclerViewItemClickListener {
 
-    @Inject
-    SpendingListViewModel viewModel;
+    private SpendingListViewModel viewModel;
 
     private final ArrayList<Spending> spendingList = new ArrayList<>();
     private SpendingRecyclerViewAdapter adapter;
@@ -46,13 +44,6 @@ public class SpendingListFragment extends BaseFragment implements RecyclerViewIt
 
     public static SpendingListFragment newInstance() {
         return new SpendingListFragment();
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        AndroidSupportInjection.inject(this);
-        subscribeSpendings();
     }
 
     @Override
@@ -74,6 +65,13 @@ public class SpendingListFragment extends BaseFragment implements RecyclerViewIt
         spendingRecyclerView.setLayoutManager(layoutManager);
 
         return view;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(SpendingListViewModel.class);
+        subscribeSpendings();
     }
 
     private void subscribeSpendings() {

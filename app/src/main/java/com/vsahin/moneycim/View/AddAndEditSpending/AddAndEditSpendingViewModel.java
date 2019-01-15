@@ -17,9 +17,9 @@ import androidx.lifecycle.ViewModel;
 
 public class AddAndEditSpendingViewModel extends ViewModel {
 
-    SpendingRepository spendingRepository;
+    private SpendingRepository spendingRepository;
 
-    final public LiveData<List<SpendingGroup>> spendingGroups;
+    final LiveData<List<SpendingGroup>> spendingGroups;
 
     @Inject
     public AddAndEditSpendingViewModel(SpendingRepository spendingRepository) {
@@ -31,11 +31,11 @@ public class AddAndEditSpendingViewModel extends ViewModel {
         return spendingRepository.getSpendingGroups();
     }
 
-    public void addSpending(RawSpending s){
+    void addSpending(RawSpending s){
         spendingRepository.addSpending(s);
     }
 
-    public void deleteSpending(int id){
+    void deleteSpending(int id){
         spendingRepository.deleteSpending(id);
     }
 }

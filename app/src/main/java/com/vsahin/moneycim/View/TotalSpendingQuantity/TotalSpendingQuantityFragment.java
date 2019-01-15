@@ -9,12 +9,14 @@ import android.widget.TextView;
 
 import com.vsahin.moneycim.R;
 import com.vsahin.moneycim.View.Base.BaseFragment;
+import com.vsahin.moneycim.ViewModelFactory;
 
 import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -26,18 +28,10 @@ import dagger.android.support.AndroidSupportInjection;
 
 public class TotalSpendingQuantityFragment extends BaseFragment {
 
-    @Inject
-    TotalSpendingQuantityViewModel viewModel;
+    private TotalSpendingQuantityViewModel viewModel;
 
     @BindView(R.id.quantity)
     TextView txtQuantity;
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        AndroidSupportInjection.inject(this);
-        subscribeTotalQuantity();
-    }
 
     @Nullable
     @Override
@@ -47,17 +41,25 @@ public class TotalSpendingQuantityFragment extends BaseFragment {
         return view;
     }
 
-    private void subscribeTotalQuantity(){
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(TotalSpendingQuantityViewModel.class);
+        subscribeTotalQuantity();
+    }
+
+    private void subscribeTotalQuantity() {
         viewModel.totalSpendingQuantity.observe(this, quantity -> {
-            if(quantity != null){
+            if(quantity != null) {
                 showTotalQuantityInUi(quantity, txtQuantity);
-            } else {
+            }
+            else {
                 showTotalQuantityInUi(0.0, txtQuantity);
             }
         });
     }
 
-    private void showTotalQuantityInUi(@NonNull Double quantity, final TextView txtQuantity){
+    private void showTotalQuantityInUi(@NonNull Double quantity, final TextView txtQuantity) {
         //round two places
         quantity = Math.round(quantity * 100.0) / 100.0;
         String text = getContext().getString(R.string.turkish_lira_symbol) + String.valueOf(quantity);

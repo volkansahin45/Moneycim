@@ -15,12 +15,12 @@ import androidx.lifecycle.ViewModel;
  */
 
 public class SpendingListViewModel extends ViewModel {
-    SpendingRepository spendingRepository;
+    private SpendingRepository spendingRepository;
 
     final LiveData<List<Spending>> spendings;
 
     @Inject
-    public SpendingListViewModel(SpendingRepository spendingRepository) {
+    SpendingListViewModel(SpendingRepository spendingRepository) {
         this.spendingRepository = spendingRepository;
         spendings = getSpendings();
     }
@@ -29,7 +29,7 @@ public class SpendingListViewModel extends ViewModel {
         return spendingRepository.getSpendings();
     }
 
-    public void deleteSpending(int id){
+    void deleteSpending(int id){
         spendingRepository.deleteSpending(id);
     }
 }

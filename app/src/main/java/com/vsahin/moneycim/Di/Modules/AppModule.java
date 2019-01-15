@@ -21,7 +21,4 @@ public abstract class AppModule {
     @Binds
     @Singleton
     abstract Application application(MoneycimApp app);
-
-    @Binds
-    abstract ViewModelProvider.Factory bindViewModelFactory(ViewModelFactory viewModelFactory);
 }

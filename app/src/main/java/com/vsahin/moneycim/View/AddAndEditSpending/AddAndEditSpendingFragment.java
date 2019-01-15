@@ -21,6 +21,7 @@ import com.vsahin.moneycim.Model.Entity.SpendingGroup;
 import com.vsahin.moneycim.R;
 import com.vsahin.moneycim.View.Base.BaseFragment;
 import com.vsahin.moneycim.View.OCR_Scan_Receipt.OcrCaptureActivity;
+import com.vsahin.moneycim.ViewModelFactory;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -33,6 +34,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -67,8 +69,7 @@ public class AddAndEditSpendingFragment extends BaseFragment {
     @BindView(R.id.delete_button)
     ImageButton deleteButton;
 
-    @Inject
-    AddAndEditSpendingViewModel viewModel;
+    private AddAndEditSpendingViewModel viewModel;
 
     private RawSpending spending;
     private ArrayList<SpendingGroup> spendingGroupList;
@@ -99,9 +100,9 @@ public class AddAndEditSpendingFragment extends BaseFragment {
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        AndroidSupportInjection.inject(this);
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(AddAndEditSpendingViewModel.class);
         subscribeSpendingGroups();
     }
 
